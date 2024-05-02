@@ -1,5 +1,8 @@
-import Image from "next/image";
+import Form from "@/components/Form";
+import React from "react";
 
-export default function Home() {
-  return <div>Hello</div>;
+function Login() {
+  return <Form type="login" />;
 }
+
+export default Login;

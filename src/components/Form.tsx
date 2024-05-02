@@ -86,7 +86,7 @@ const Form = ({ type }: { type: string }) => {
             <div className="input">
               <input
                 type="email"
-                placeholder="Enter your email"
+                placeholder="Enter email"
                 defaultValue={""}
                 className="input-field"
                 {...register("email", {
