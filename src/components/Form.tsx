@@ -34,6 +34,7 @@ const Form = ({ type }: { type: string }) => {
         body: JSON.stringify(data),
       });
       if (res.ok) {
+        toast.success("Account created successfully");
         router.push("/");
       }
       if (!res.ok) {
@@ -45,7 +46,9 @@ const Form = ({ type }: { type: string }) => {
         ...data,
         redirect: false,
       });
+      console.log(res);
       if (res?.ok) {
+        toast.success("Login successfull");
         router.push("/chats");
       }
       if (!res?.ok) {

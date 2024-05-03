@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "../globals.css";
 import Provider from "@/components/Provider";
 import TosterContext from "@/components/TosterContext";
+import TopBar from "@/components/Topbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body className={`${inter.className} bg-purple-1`}>
         <Provider session={""}>
           <TosterContext />
+          <TopBar />
           {children}
         </Provider>
       </body>
