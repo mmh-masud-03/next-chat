@@ -20,7 +20,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${inter.className} bg-purple-1`}>
-        <Provider session={""}>
+        <Provider>
           <TosterContext />
           <TopBar />
           {children}
