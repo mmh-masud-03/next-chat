@@ -39,7 +39,7 @@ const Profile = () => {
   const updateUser = async (data: any) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/users/${user?._id}/update`, {
+      const res = await fetch(`/api/users/${user._id}/update`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

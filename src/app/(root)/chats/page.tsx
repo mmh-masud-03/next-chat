@@ -1,7 +1,12 @@
+import Contacts from "@/components/Contacts";
 import React from "react";
 
 function Chats() {
-  return <div>chats</div>;
+  return (
+    <div>
+      <Contacts />
+    </div>
+  );
 }
 
 export default Chats;

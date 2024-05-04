@@ -36,7 +36,7 @@ const handler = NextAuth({
         throw new Error("User session is undefined");
       }
       const mongodbUser = await User.findOne({ email: session.user.email });
-      //   session.user.id = mongodbUser._id.toString();
+      session.user.id = mongodbUser._id.toString();
       session.user = { ...session.user, ...mongodbUser._doc };
 
       console.log(session);
