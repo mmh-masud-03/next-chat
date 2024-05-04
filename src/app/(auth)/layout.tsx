@@ -22,7 +22,6 @@ export default function RootLayout({
       <body className={`${inter.className} bg-purple-1`}>
         <Provider>
           <TosterContext />
-          <TopBar />
           {children}
         </Provider>
       </body>

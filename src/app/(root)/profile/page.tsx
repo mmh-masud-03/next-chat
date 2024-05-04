@@ -1,5 +1,4 @@
 "use client";
-
 import Loader from "@/components/Loader";
 import { PersonOutline } from "@mui/icons-material";
 import { useSession } from "next-auth/react";
@@ -7,17 +6,23 @@ import { CldUploadButton } from "next-cloudinary";
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 
+interface UserProfile {
+  _id: string;
+  username: string;
+  profileImage: string;
+}
+
 const Profile = () => {
   const { data: session } = useSession();
-  const user = session?.user;
+  const user: UserProfile | undefined = session?.user;
 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (user) {
       reset({
-        username: user?.name,
-        profileImage: user?.image,
+        username: user.username,
+        profileImage: user.profileImage,
       });
     }
     setLoading(false);
@@ -29,7 +34,7 @@ const Profile = () => {
     setValue,
     reset,
     handleSubmit,
-    formState: { errors }, // Update the property name to 'errors'
+    formState: { errors },
   } = useForm();
 
   const uploadPhoto = (result: any) => {
@@ -39,7 +44,7 @@ const Profile = () => {
   const updateUser = async (data: any) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/users/${user._id}/update`, {
+      const res = await fetch(`/api/users/${user?._id}/update`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,14 +88,18 @@ const Profile = () => {
 
         <div className="flex items-center justify-between">
           <img
-            src={watch("profileImage") || user?.image || "/assets/person.jpg"}
+            src={
+              watch("profileImage") ||
+              user?.profileImage ||
+              "/assets/person.jpg"
+            }
             alt="profile"
             className="w-40 h-40 rounded-full"
           />
           <CldUploadButton
             options={{ maxFiles: 1 }}
             onUpload={uploadPhoto}
-            uploadPreset="ag2ilayj"
+            uploadPreset="upecg01j"
           >
             <p className="text-body-bold">Upload new photo</p>
           </CldUploadButton>

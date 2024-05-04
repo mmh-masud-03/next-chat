@@ -1,6 +1,8 @@
 "use client";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
+import Loader from "./Loader";
+import { RadioButtonUnchecked } from "@mui/icons-material";
 
 function Contacts() {
   const [loading, setLoading] = useState(true);
@@ -11,7 +13,9 @@ function Contacts() {
   const currentUser = session?.user;
   const getAllContacts = async () => {
     try {
-      const res = await fetch("/api/users");
+      const res = await fetch(
+        search !== "" ? `/api/users/searchContact/${search}` : "/api/users"
+      );
       const data = await res.json();
       const filterdContacts = data.filter(
         (contact) => contact._id !== currentUser?._id
@@ -24,8 +28,10 @@ function Contacts() {
   };
   useEffect(() => {
     if (currentUser) getAllContacts();
-  }, [currentUser]);
-  return (
+  }, [currentUser, search]);
+  return loading ? (
+    <Loader />
+  ) : (
     <div className="create-chat-container">
       <input
         type="text"
@@ -34,6 +40,25 @@ function Contacts() {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
+      <div className="contact-bar">
+        <div className="contact-list">
+          <p className="text-body-bold">Select or Diselect</p>
+          {contacts.map((user, index) => (
+            <div key={index} className="contact">
+              <RadioButtonUnchecked />
+              <img
+                src={user.profileImage || "/assets/person.jpg"}
+                alt="profile"
+                className="profilePhoto"
+              />
+              <p className="text-base-bold">{user.username}</p>
+            </div>
+          ))}
+        </div>
+        <div className="create-chat">
+          <button className="btn">Start a new chat</button>
+        </div>
+      </div>
     </div>
   );
 }
