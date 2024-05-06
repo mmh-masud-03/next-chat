@@ -39,8 +39,6 @@ const handler = NextAuth({
       session.user.id = mongodbUser._id.toString();
       session.user = { ...session.user, ...mongodbUser._doc };
 
-      console.log(session);
-
       return session;
     },
   },

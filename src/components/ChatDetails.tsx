@@ -7,7 +7,7 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { CldUploadButton } from "next-cloudinary";
 import MessageBox from "./MessageBox";
-// import { pusherClient } from "@lib/pusher";
+import { pusherClient } from "@/lib/pusher";
 
 const ChatDetails = ({ chatId }) => {
   const [loading, setLoading] = useState(true);
@@ -82,25 +82,25 @@ const ChatDetails = ({ chatId }) => {
     }
   };
 
-  //   useEffect(() => {
-  //     pusherClient.subscribe(chatId);
+  useEffect(() => {
+    pusherClient.subscribe(chatId);
 
-  //     const handleMessage = async (newMessage) => {
-  //       setChat((prevChat) => {
-  //         return {
-  //           ...prevChat,
-  //           messages: [...prevChat.messages, newMessage],
-  //         };
-  //       });
-  //     };
+    const handleMessage = async (newMessage) => {
+      setChat((prevChat) => {
+        return {
+          ...prevChat,
+          messages: [...prevChat.messages, newMessage],
+        };
+      });
+    };
 
-  //     pusherClient.bind("new-message", handleMessage);
+    pusherClient.bind("new-message", handleMessage);
 
-  //     return () => {
-  //       pusherClient.unsubscribe(chatId);
-  //       pusherClient.unbind("new-message", handleMessage);
-  //     };
-  //   }, [chatId]);
+    return () => {
+      pusherClient.unsubscribe(chatId);
+      pusherClient.unbind("new-message", handleMessage);
+    };
+  }, [chatId]);
 
   /* Scrolling down to the bottom when having the new message */
 
