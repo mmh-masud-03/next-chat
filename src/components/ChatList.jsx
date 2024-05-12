@@ -53,7 +53,7 @@ const ChatList = ({ currentChatId }) => {
 
       const handleNewChat = (newChat) => {
         setChats((allChats) => [...allChats, newChat]);
-      }
+      };
 
       pusherClient.bind("update-chat", handleChatUpdate);
       pusherClient.bind("new-chat", handleNewChat);
@@ -81,7 +81,7 @@ const ChatList = ({ currentChatId }) => {
         {chats?.map((chat, index) => (
           <ChatBox
             chat={chat}
-            index={index}
+            key={index}
             currentUser={currentUser}
             currentChatId={currentChatId}
           />
