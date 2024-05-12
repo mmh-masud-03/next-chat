@@ -9,7 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { signIn } from "next-auth/react"
+import { signIn } from "next-auth/react";
 
 const Form = ({ type }) => {
   const {
@@ -44,7 +44,7 @@ const Form = ({ type }) => {
       const res = await signIn("credentials", {
         ...data,
         redirect: false,
-      })
+      });
 
       if (res.ok) {
         router.push("/chats");
@@ -56,13 +56,10 @@ const Form = ({ type }) => {
     }
   };
 
-  
-
   return (
     <div className="auth">
       <div className="content">
-        <img src="/assets/logo.png" alt="logo" className="logo" />
-
+        <p className="text-heading2-bold font-semibold ">ConvoSphere</p>{" "}
         <form className="form" onSubmit={handleSubmit(onSubmit)}>
           {type === "register" && (
             <div>
@@ -135,14 +132,17 @@ const Form = ({ type }) => {
             {type === "register" ? "Join Free" : "Let's Chat"}
           </button>
         </form>
-
         {type === "register" ? (
           <Link href="/" className="link">
-            <p className="text-center">Already have an account? Sign In Here</p>
+            <p className="text-center text-blue-500">
+              Already have an account? Sign In Here
+            </p>
           </Link>
         ) : (
           <Link href="/register" className="link">
-            <p className="text-center">Don't have an account? Register Here</p>
+            <p className="text-center text-blue-400">
+              Don't have an account? Register Here
+            </p>
           </Link>
         )}
       </div>

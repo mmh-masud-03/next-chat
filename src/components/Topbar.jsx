@@ -15,9 +15,9 @@ const TopBar = () => {
   const user = session?.user;
 
   return (
-    <div className="topbar">
+    <div className="topbar bg-red-300">
       <Link href="/chats">
-        <img src="/assets/logo.png" alt="logo" className="logo" />
+        <p className="text-heading2-bold font-semibold ">ConvoSphere</p>{" "}
       </Link>
 
       <div className="menu">

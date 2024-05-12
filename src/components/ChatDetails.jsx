@@ -169,7 +169,7 @@ const ChatDetails = ({ chatId }) => {
             <CldUploadButton
               options={{ maxFiles: 1 }}
               onUpload={sendPhoto}
-              uploadPreset="upecg01j"
+              uploadPreset="ag2ilayj"
             >
               <AddPhotoAlternate
                 sx={{
