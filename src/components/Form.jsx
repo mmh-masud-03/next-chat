@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
+import { Toaster } from "react-hot-toast";
 
 const Form = ({ type }) => {
   const {
@@ -146,6 +147,7 @@ const Form = ({ type }) => {
           </Link>
         )}
       </div>
+      <Toaster />
     </div>
   );
 };
